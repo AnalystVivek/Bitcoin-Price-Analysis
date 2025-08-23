@@ -69,7 +69,7 @@ print(df[['Open', 'High', 'Low', 'Close']].describe().T)
 ---
 <br><br>
 
-### 3. Visualizing Price Trends over time 📊🔍
+### 3. Visualizing Price Trends over time 📊
 <br><br>
 ```
 plt.figure(figsize=(20, 12))
@@ -249,11 +249,16 @@ fig_pct.show()
 
 ## Summary 📝
 
-- Data loaded and cleaned with no missing values.  
-- Bitcoin exhibited strong price growth from 2013-2017.  
-- Visualized price trends via line charts and candlestick charts.  
-- Explored price volatility using percentage change analysis.  
-- Analyzed long-term trends with yearly, quarterly, and monthly resampling.
+- Data was preprocessed with robust cleaning and date formatting for time series analysis.  
+- Basic price statistics highlighted Bitcoin’s high volatility and substantial price increase from 2013 to 2017.  
+- Line plots, candlestick charts, and log scale graphs effectively depicted price trends and volatility.  
+- Resampling helped capture broader market cycles at annual, quarterly, and monthly levels.  
+- Daily percentage change quantified short-term price fluctuations, a key to understanding market risk.
+
+---
+
+## Conclusion 🔍
+- Through this project, I have demonstrated my ability to deliver deep market insights and risk profiles from large-scale financial datasets. The outputs align with professional norms for exploratory analytics, visual storytelling, and actionable intelligence in the financial sector. This skill set can drive data-driven investment decisions, enhance risk management protocols, and support strategic business outcomes in any modern financial organization.
 
 ---
 
