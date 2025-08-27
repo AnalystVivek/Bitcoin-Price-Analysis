@@ -21,7 +21,7 @@ The data covers 1556 records, spanning from **2013-04-28** to **2017-07-31**.
 <br><br>
 ### 1. Data Loading and Cleaning 🧹
 <br><br>
-```
+```ruby
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -32,19 +32,19 @@ from plotly.offline import init_notebook_mode, iplot
 init_notebook_mode(connected=True) # For offline use in Jupyter
 ```
 Load dataset
-```
+```ruby
 df = pd.read_csv('bitcoin_dataset.csv')
 ```
 Convert Date to datetime
-```
+```ruby
 df['Date'] = pd.to_datetime(df['Date'])
 ```
 Sort dataset by Date
-```
+```ruby
 df.sort_values(by='Date', ascending=True, inplace=True)
 ```
 Check for missing values and duplicates
-```
+```ruby
 print(df.isnull().sum())
 print(df.duplicated().sum())
 ```
@@ -57,7 +57,7 @@ print(df.duplicated().sum())
 ### 2. Statistical Summary of Price Columns 📈
 <br><br>
 Summary statistics for Open, High, Low, Close columns
-```
+```ruby
 print(df[['Open', 'High', 'Low', 'Close']].describe().T)
 ```
 <img width="500" height="221" alt="Screenshot 2025-08-23 033140" src="https://github.com/user-attachments/assets/1b306556-dba4-4f72-85d7-b5dbc4efd735" />
@@ -71,7 +71,7 @@ print(df[['Open', 'High', 'Low', 'Close']].describe().T)
 
 ### 3. Visualizing Price Trends over time 📊
 <br><br>
-```
+```ruby
 plt.figure(figsize=(20, 12))
 
 for idx, col in enumerate(['Open', 'High', 'Low', 'Close'], start=1):
@@ -91,12 +91,12 @@ for idx, col in enumerate(['Open', 'High', 'Low', 'Close'], start=1):
 ### 4. Candlestick Chart (First 100 Records) 💹
 <br><br>
 Limiting data to first 100 for clarity
-```
+```ruby
 data_sample = df.head(100)
 ```
 
 Create candlestick trace
-```
+```ruby
 trace = go.Candlestick(
              x=data_sample['Date'],
              open=data_sample['Open'],
@@ -125,18 +125,18 @@ iplot(fig)
 <br><br>
 ### 5. Closing Price Over Time (Line Plot)
 <br><br>
-```
+```ruby
 df.set_index('Date', inplace=True) # Set Date as index for time series
 ```
 
 Basic closing price plot
-```
+```ruby
 df['Close'].plot(title="Closing Price Over Time")
 plt.show()
 ```
 
 Interactive Plotly line plot
-```
+```ruby
 fig = px.line(df, y='Close', title='Closing Price Over Time')
 fig.show()
 ```
@@ -149,7 +149,7 @@ fig.show()
 <br><br>
 ### 6. Side-by-side linear and Logarithmic Scale Visualization 📉📈
 <br><br>
-```
+```ruby
 plt.figure(figsize=(20, 8))
 
 plt.subplot(1, 2, 1)
@@ -172,7 +172,7 @@ plt.show()
 ### 7. Resampling to Analyze Trends ⏳
 <br><br>
 - Yearly mean closing price
-```
+```ruby
 yearly_mean = df['Close'].resample('YE').mean()
 
 yearly_mean.plot(title='Yearly Mean Closing Price', figsize=(8, 3))
@@ -183,7 +183,7 @@ plt.show()
 <br><br>
 
 - Quarterly mean closing price
-```
+```ruby
 quarterly_mean = df['Close'].resample('QE').mean()
 
 fig_q = px.line(quarterly_mean, y='Close', title='Quarterly Mean Closing Price', markers=True)
@@ -202,7 +202,7 @@ fig_q.show()
 <br><br>
 
 - Monthly mean closing price
-```
+```ruby
 monthly_mean = df['Close'].resample('ME').mean()
 
 fig_m = px.line(monthly_mean, y='Close', title='Monthly Mean Closing Price', markers=True)
@@ -233,7 +233,7 @@ df['close_pc'] = df['Close'].pct_change() * 100
 
 Interactive plot
 
-```
+```ruby
 fig_pct = px.line(df['close_pc'], title='Daily Percentage Change in Closing Price', labels={'value':'Percentage Change'})
 
 fig_pct.update_traces(line=dict(color='green', width=1))
